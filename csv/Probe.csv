@@ -1,0 +1,7 @@
+"ID","ItemType","Name","Value","Weight","Uses","Quality","Model","Inventory","Script"
+"probe_apprentice_01","Probe","Apprentice's Probe","10","1.00","25","0.50","m\Probe_Apprentice_01.NIF","m\Tx_probe_A_01.tga",""
+"probe_bent","Probe","Bent Probe","2","0.25","5","0.25","m\Probe_Apprentice_01.NIF","m\Tx_probe_A_01.tga",""
+"probe_grandmaster","Probe","Grandmaster's Probe","200","0.25","25","1.25","m\Probe_Grandmaster_01.nif","m\Tx_probe_G_01.tga",""
+"probe_journeyman_01","Probe","Journeyman's Probe","50","0.25","25","0.75","m\Probe_Journeyman_01.NIF","m\Tx_probe_J_01.tga",""
+"probe_master","Probe","Master's Probe","100","0.25","25","1.00","m\Probe_Master_01.nif","m\Tx_probe_M_01.tga",""
+"probe_secretmaster","Probe","Secret Master's Probe","500","0.25","25","1.50","m\Probe_SecretMaster_01.nif","m\Tx_probe_S_01.tga",""

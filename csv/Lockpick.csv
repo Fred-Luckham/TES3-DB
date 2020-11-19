@@ -1,0 +1,7 @@
+"ID","ItemType","Name","Value","Weight","Uses","Quality","Model","Inventory","Script"
+"pick_apprentice_01","Lock","Apprentice's Lockpick","10","0.25","25","1.00","m\Pick_Apprentice_01.NIF","m\Tx_pick_A_01.tga",""
+"pick_grandmaster","Lock","Grandmaster's Pick","200","0.25","25","1.40","m\Pick_Grandmaster_01.nif","m\Tx_pick_G_01.tga",""
+"pick_journeyman_01","Lock","Journeyman's Lockpick","50","0.25","25","1.10","m\Pick_Journeyman_01.NIF","m\Tx_pick_J_01.tga",""
+"pick_master","Lock","Master's Lockpick","100","0.25","25","1.30","m\Pick_Master_01.nif","m\Tx_pick_M_01.tga",""
+"pick_secretmaster","Lock","Secret Master's Lockpick","500","0.25","25","1.50","m\Pick_SecretMaster_01.nif","m\Tx_pick_S_01.tga",""
+"skeleton_key","Lock","The Skeleton Key","1000","0.50","50","5.00","m\Skeleton_key.NIF","m\tx_skeleton_key.tga",""

@@ -1,0 +1,7 @@
+"ID","ItemType","Name","Value","Weight","Uses","Quality","Model","Inventory","Script"
+"hammer_repair","Repair","Apprentice's Armorer's Hammer","10","4.00","20","0.80","m\misc_hammer10.nif","m\Tx_repair_A_01.tga",""
+"repair_grandmaster_01","Repair","GrandMaster's Armorer's Hammer","100","1.00","10","1.70","m\Repair_GrandMaster_01.nif","m\Tx_repair_G_01.tga",""
+"repair_journeyman_01","Repair","Journeyman's Armorer's Hammer","20","3.00","20","1.00","m\Repair_Journeyman_01.NIF","m\Tx_repair_J_01.tga",""
+"repair_master_01","Repair","Master's Armorer's Hammer","50","2.00","10","1.30","m\Repair_Master_01.nif","m\Tx_repair_M_01.tga",""
+"repair_prongs","Repair","Repair Prongs","6","2.50","25","0.50","m\misc_prongs00.nif","m\misc_prongs00.tga",""
+"repair_secretmaster_01","Repair","Sirollus Saccus' Hammer","200","1.00","10","2.00","m\Repair_SecretMaster_01.nif","m\Tx_repair_S_01.tga",""
