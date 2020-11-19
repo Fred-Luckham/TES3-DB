@@ -1,3 +1,4 @@
+import os
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
@@ -30,6 +31,8 @@ import tabs.static
 import tabs.weapon
 
 app = dash.Dash(__name__)
+
+server = app.server
 
 app.layout = html.Div([
     dcc.Tabs(id='tabs-example', value='tab-1', children=[
