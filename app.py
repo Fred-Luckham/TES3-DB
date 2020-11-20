@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
@@ -34,35 +35,61 @@ app = dash.Dash(__name__)
 
 server = app.server
 
+tabs_styles = {
+    'height': 'auto',
+    'width': 'auto'
+}
+tab_style = {
+    'width': 'auto',
+    'height': 'auto',
+    'background': '#A9A9A9',
+    'fontWeight': 'bold'
+}
+
+tab_selected_style = {
+    'width': 'auto',
+    'height': 'auto',
+    'background': '#A9A9A9',
+    'fontWeight': 'bold'
+}
+
 app.layout = html.Div([
+            html.P(
+            "TES3 Game Data Database",
+            style = {
+                'background': '#A9A9A9',
+                'padding': '10px'
+            }
+        ),
     dcc.Tabs(id='tabs-example', value='tab-1', children=[
-        dcc.Tab(label='Activators', value='tab-1'),
-        dcc.Tab(label='Achemy', value='tab-2'),
-        dcc.Tab(label='Apparatus', value='tab-3'),
-        dcc.Tab(label='Armor', value='tab-4'),
-        dcc.Tab(label='Book', value='tab-5'),
-        dcc.Tab(label='Class', value='tab-6'),
-        dcc.Tab(label='Clothing', value='tab-7'),
-        dcc.Tab(label='Container', value='tab-8'),
-        dcc.Tab(label='Enchanting', value='tab-9'),
-        dcc.Tab(label='Ingredients', value='tab-10'),
-        dcc.Tab(label='Leveled Creatures', value='tab-11'),
-        dcc.Tab(label='Leveled Items', value='tab-12'),
-        dcc.Tab(label='Light', value='tab-13'),
-        dcc.Tab(label='Lockpick', value='tab-14'),
-        dcc.Tab(label='Misc', value='tab-15'),
-        dcc.Tab(label='NPC', value='tab-16'),
-        dcc.Tab(label='Probe', value='tab-17'),
-        dcc.Tab(label='Race', value='tab-18'),
-        dcc.Tab(label='Repair', value='tab-19'),
-        dcc.Tab(label='Sound Gen', value='tab-20'),
-        dcc.Tab(label='Sound', value='tab-21'),
-        dcc.Tab(label='Spell', value='tab-22'),
-        dcc.Tab(label='Static', value='tab-23'),
-        dcc.Tab(label='Weapon', value='tab-24'),
-    ]),
-    html.Div(id='tabs-example-content')
-])
+        dcc.Tab(label='Activators', value='tab-1', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Achemy', value='tab-2', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Apparatus', value='tab-3', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Armor', value='tab-4', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Book', value='tab-5', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Class', value='tab-6', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Clothing', value='tab-7', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Container', value='tab-8', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Enchanting', value='tab-9', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Ingredients', value='tab-10', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Leveled Creatures', value='tab-11', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Leveled Items', value='tab-12', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Light', value='tab-13', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Lockpick', value='tab-14', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Misc', value='tab-15', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='NPC', value='tab-16', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Probe', value='tab-17', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Race', value='tab-18', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Repair', value='tab-19', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Sound Gen', value='tab-20', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Sound', value='tab-21', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Spell', value='tab-22', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Static', value='tab-23', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Weapon', value='tab-24', style=tab_style, selected_style=tab_selected_style),
+        ],  
+        style= tabs_styles),
+        html.Div(id='tabs-example-content')
+    ])
 
 @app.callback(Output('tabs-example-content', 'children'),
               [Input('tabs-example', 'value')])

@@ -14,8 +14,9 @@ clothing_table = [
             data=df_cloth.to_dict('records'),
             columns=[{'id': c, 'name': c} for c in df_cloth.columns],
             fixed_rows={'headers': True, 'data': 0},
+            page_size=50,
             style_as_list_view=True,
-            style_table={'overflowX': 'auto'},
+            style_table={'height': '100%', 'width': '100%', 'overflowX': 'auto'},
             style_cell={
                 'height': 'auto',
                 'textAlign': 'left',
@@ -40,7 +41,10 @@ clothing_table = [
             style_header={
                 'backgroundColor': 'rgb(230, 230, 230)',
                 'fontWeight': 'bold'
-            }
+            },
+            filter_action="native",
+            sort_action="native",
+            sort_mode='multi',
         )
     ])
 ]
