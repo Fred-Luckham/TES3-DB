@@ -105,7 +105,7 @@ def render_content(tab):
     elif tab == 'tab-5':
         return tabs.book.book_table
     elif tab == 'tab-6':
-        return tabs.classes.class_table
+        return tabs.classes.classes_table
     elif tab == 'tab-7':
         return tabs.clothing.clothing_table
     elif tab == 'tab-8':
