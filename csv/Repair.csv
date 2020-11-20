@@ -5,3 +5,6 @@
 "repair_master_01","Repair","Master's Armorer's Hammer","50","2.00","10","1.30","m\Repair_Master_01.nif","m\Tx_repair_M_01.tga",""
 "repair_prongs","Repair","Repair Prongs","6","2.50","25","0.50","m\misc_prongs00.nif","m\misc_prongs00.tga",""
 "repair_secretmaster_01","Repair","Sirollus Saccus' Hammer","200","1.00","10","2.00","m\Repair_SecretMaster_01.nif","m\Tx_repair_S_01.tga",""
+"T_Com_Hammer_Repair_01","Repair","Hammer","8","4.00","10","0.60","sky\m\sky_Misc_Hammer_01.nif","sky\m\tx_misc_hammer_01.dds",""
+"T_Com_Hammer_Repair_02","Repair","Ball-peen Repair Hammer","8","3.00","22","0.75","tr\m\tr_misc_hammer_bp_01.nif","TR\m\tr_misc_hammer_bp_01.dds",""
+"T_Dwe_UNI_HammerGharen_01","Repair","Hammer of Gharen","15000","20.00","250","5.00","tr\m\tr_hammer_gharen_uni.nif","tr\m\tr_hammer_gharen_uni.dds",""

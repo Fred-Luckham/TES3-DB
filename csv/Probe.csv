@@ -5,3 +5,4 @@
 "probe_journeyman_01","Probe","Journeyman's Probe","50","0.25","25","0.75","m\Probe_Journeyman_01.NIF","m\Tx_probe_J_01.tga",""
 "probe_master","Probe","Master's Probe","100","0.25","25","1.00","m\Probe_Master_01.nif","m\Tx_probe_M_01.tga",""
 "probe_secretmaster","Probe","Secret Master's Probe","500","0.25","25","1.50","m\Probe_SecretMaster_01.nif","m\Tx_probe_S_01.tga",""
+"T_Com_Thief_Spoon01","Probe","Thief's Probe Spoon","50","0.25","25","0.80","tr\m\tr_misc_thief_spoon.nif","tr\m\tr_misc_thief_spoon.dds",""

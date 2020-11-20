@@ -5,3 +5,4 @@
 "pick_master","Lock","Master's Lockpick","100","0.25","25","1.30","m\Pick_Master_01.nif","m\Tx_pick_M_01.tga",""
 "pick_secretmaster","Lock","Secret Master's Lockpick","500","0.25","25","1.50","m\Pick_SecretMaster_01.nif","m\Tx_pick_S_01.tga",""
 "skeleton_key","Lock","The Skeleton Key","1000","0.50","50","5.00","m\Skeleton_key.NIF","m\tx_skeleton_key.tga",""
+"T_Com_Thief_Fork01","Lock","Thief's Lockpick Fork","50","0.25","25","1.15","tr\m\tr_misc_thief_fork.nif","tr\m\tr_misc_thief_fork.dds",""
