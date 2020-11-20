@@ -63,7 +63,7 @@ app.layout = html.Div([
         ),
     dcc.Tabs(id='tabs-example', value='tab-1', children=[
         dcc.Tab(label='Activators', value='tab-1', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Achemy', value='tab-2', style=tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Alchemy', value='tab-2', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Apparatus', value='tab-3', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Armor', value='tab-4', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Book', value='tab-5', style=tab_style, selected_style=tab_selected_style),
