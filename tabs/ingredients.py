@@ -6,7 +6,7 @@ import dash_core_components as dcc
 
 from dash.dependencies import Input, Output
 
-df_ingred = pd.read_csv('csv/Ingredient.csv', encoding = 'unicode_escape')
+df_ingred = pd.read_csv(r'csv/Ingredient.csv', encoding = 'ISO-8859-1')
 
 ingredients_table = [
     html.Div([

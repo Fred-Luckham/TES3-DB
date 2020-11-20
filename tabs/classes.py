@@ -8,7 +8,7 @@ from dash.dependencies import Input, Output
 
 df = pd.read_csv('csv/Class.csv', encoding = 'unicode_escape')
 
-class_table = [
+classes_table = [
     html.Div([
         dash_table.DataTable(
             data=df.to_dict('records'),

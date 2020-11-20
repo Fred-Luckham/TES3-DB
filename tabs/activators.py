@@ -6,7 +6,7 @@ import dash_core_components as dcc
 
 from dash.dependencies import Input, Output
 
-df = pd.read_csv('csv/Activator.csv', encoding = 'unicode_escape')
+df = pd.read_csv(r'csv/Activator.csv', encoding = 'ISO-8859-1')
 
 activators_table = [
     html.Div([

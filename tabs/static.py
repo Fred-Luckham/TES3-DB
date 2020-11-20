@@ -6,7 +6,7 @@ import dash_core_components as dcc
 
 from dash.dependencies import Input, Output
 
-df_static = pd.read_csv('csv/Static.csv', encoding = 'unicode_escape')
+df_static = pd.read_csv(r'csv/Static.csv', encoding = 'ISO-8859-1')
 
 static_table = [
     html.Div([
