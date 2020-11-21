@@ -3,145 +3,120 @@ import pandas as pd
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
-
 from dash.dependencies import Input, Output
+from data_table_handler import data_table
 
-import tabs.activators
-import tabs.alchemy
-import tabs.apparatus
-import tabs.armor
-import tabs.book
-import tabs.classes
-import tabs.clothing
-import tabs.container
-import tabs.enchanting
-import tabs.ingredients
-import tabs.leveled_creature
-import tabs.leveled_item
-import tabs.light
-import tabs.lockpick
-import tabs.misc
-import tabs.npc
-import tabs.probe
-import tabs.race
-import tabs.repair
-import tabs.sound_gen
-import tabs.sound
-import tabs.spell
-import tabs.static
-import tabs.weapon
 
 app = dash.Dash(__name__)
 
 server = app.server
 
-tabs_styles = {
-    'height': 'auto',
-    'width': 'auto'
-}
-tab_style = {
-    'width': 'auto',
-    'height': 'auto',
-    'background': '#A9A9A9',
-    'fontWeight': 'bold'
-}
-
-tab_selected_style = {
-    'width': 'auto',
-    'height': 'auto',
-    'background': '#A9A9A9',
-    'fontWeight': 'bold'
-}
 
 app.layout = html.Div([
-            html.P(
-            "TES3 Game Data Database",
-            style = {
-                'background': '#A9A9A9',
-                'padding': '10px'
-            }
-        ),
-    dcc.Tabs(id='tabs-example', value='tab-1', children=[
-        dcc.Tab(label='Activators', value='tab-1', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Alchemy', value='tab-2', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Apparatus', value='tab-3', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Armor', value='tab-4', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Book', value='tab-5', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Class', value='tab-6', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Clothing', value='tab-7', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Container', value='tab-8', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Enchanting', value='tab-9', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Ingredients', value='tab-10', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Leveled Creatures', value='tab-11', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Leveled Items', value='tab-12', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Light', value='tab-13', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Lockpick', value='tab-14', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Misc', value='tab-15', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='NPC', value='tab-16', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Probe', value='tab-17', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Race', value='tab-18', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Repair', value='tab-19', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Sound Gen', value='tab-20', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Sound', value='tab-21', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Spell', value='tab-22', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Static', value='tab-23', style=tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Weapon', value='tab-24', style=tab_style, selected_style=tab_selected_style),
-        ],  
-        style= tabs_styles),
-        html.Div(id='tabs-example-content')
-    ])
+                html.P(
+                    "TES3 Game Data Database",
+                    style = {
+                        'border-radius': '25px',
+                        'border': '2px solid #A9A9A9',
+                        'font-family': 'monospace',
+                        'text_align': 'center',
+                        'padding': '10px'
+                        }
+                    ),
+                    dcc.Dropdown(
+                                id='dropdown',
+                                options=[
+                                        {'label': 'Activator', 'value': '1'},
+                                        {'label': 'Alchemy', 'value': '2'},
+                                        {'label': 'Apparatus', 'value': '3'},
+                                        {'label': 'Armor', 'value': '4'},
+                                        {'label': 'Book', 'value': '5'},
+                                        {'label': 'Class', 'value': '6'},
+                                        {'label': 'Clothing', 'value': '7'},
+                                        {'label': 'Container', 'value': '8'},
+                                        {'label': 'Enchanting', 'value': '9'},
+                                        {'label': 'Ingredients', 'value': '10'},
+                                        {'label': 'Leveled Creatures', 'value': '11'},
+                                        {'label': 'Leveled Items', 'value': '12'},
+                                        {'label': 'Light', 'value': '13'},
+                                        {'label': 'Lockpick', 'value': '14'},
+                                        {'label': 'Misc', 'value': '15'},
+                                        {'label': 'NPC', 'value': '16'},
+                                        {'label': 'Probe', 'value': '17'},
+                                        {'label': 'Race', 'value': '18'},
+                                        {'label': 'Repair', 'value': '19'},
+                                        {'label': 'Sound Gen', 'value': '20'},
+                                        {'label': 'Sound', 'value': '21'},
+                                        {'label': 'Spell', 'value': '22'},
+                                        {'label': 'Static', 'value': '23'},
+                                        {'label': 'Weapon', 'value': '24'},
 
-@app.callback(Output('tabs-example-content', 'children'),
-              [Input('tabs-example', 'value')])
-def render_content(tab):
-    if tab == 'tab-1':
-        return tabs.activators.activators_table
-    elif tab == 'tab-2':
-        return tabs.alchemy.alchemy_table
-    elif tab == 'tab-3':
-        return tabs.apparatus.apparatus_table
-    elif tab == 'tab-4':
-        return tabs.armor.armor_table
-    elif tab == 'tab-5':
-        return tabs.book.book_table
-    elif tab == 'tab-6':
-        return tabs.classes.classes_table
-    elif tab == 'tab-7':
-        return tabs.clothing.clothing_table
-    elif tab == 'tab-8':
-        return tabs.container.container_table
-    elif tab == 'tab-9':
-        return tabs.enchanting.enchanting_table
-    elif tab == 'tab-10':
-        return tabs.ingredients.ingredients_table
-    elif tab == 'tab-11':
-        return tabs.leveled_creature.leveled_creature_table
-    elif tab == 'tab-12':
-        return tabs.leveled_item.leveled_item_table
-    elif tab == 'tab-13':
-        return tabs.light.light_table
-    elif tab == 'tab-14':
-        return tabs.lockpick.lockpick_table
-    elif tab == 'tab-15':
-        return tabs.misc.misc_table
-    elif tab == 'tab-16':
-        return tabs.npc.npc_table
-    elif tab == 'tab-17':
-        return tabs.probe.probe_table
-    elif tab == 'tab-18':
-        return tabs.race.race_table
-    elif tab == 'tab-19':
-        return tabs.repair.repair_table
-    elif tab == 'tab-20':
-        return tabs.sound_gen.sound_gen_table
-    elif tab == 'tab-21':
-        return tabs.sound.sound_table
-    elif tab == 'tab-22':
-        return tabs.spell.spell_table    
-    elif tab == 'tab-23':
-        return tabs.static.static_table
-    elif tab == 'tab-24':
-        return tabs.weapon.weapon_table
+                                        ],
+                                style={
+                                    'font-family': 'monospace',
+                                },
+                                searchable=False),
+                    html.Div(
+                        id='dropdown-content',
+                        style={
+                            'height': '100%',
+                            'width': '100%'
+                        }
+                        )
+])
+
+@app.callback(
+    Output('dropdown-content', 'children'),
+    [Input('dropdown', 'value')])
+def update_ouput(value):
+    if value == '1':
+        return data_table('Activator')
+    elif value == '2':
+        return data_table('Alchemy')
+    elif value == '3':
+        return data_table('Apparatus')
+    elif value == '4':
+        return data_table('Armor')
+    elif value == '5':
+        return data_table('Book')
+    elif value == '6':
+        return data_table('Class')
+    elif value == '7':
+        return data_table('Clothing')
+    elif value == '8':
+        return data_table('Container')
+    elif value == '9':
+        return data_table('Enchanting')
+    elif value == '10':
+        return data_table('Ingredient')
+    elif value == '11':
+        return data_table('Leveled Creature')
+    elif value == '12':
+        return data_table('Leveled Item')
+    elif value == '13':
+        return data_table('Light')
+    elif value == '14':
+        return data_table('Lockpick')
+    elif value == '15':
+        return data_table('Misc')
+    elif value == '16':
+        return data_table('NPC')
+    elif value == '17':
+        return data_table('Probe')
+    elif value == '18':
+        return data_table('Race')
+    elif value == '19':
+        return data_table('Repair')
+    elif value == '20':
+        return data_table('Sound Gen')
+    elif value == '21':
+        return data_table('Sound')
+    elif value == '22':
+        return data_table('Spell')  
+    elif value == '23':
+        return data_table('Static')
+    elif value == '24':
+        return data_table('Weapon')
 
 if __name__ == '__main__':
     app.run_server(debug=True)
