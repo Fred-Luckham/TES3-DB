@@ -11,12 +11,18 @@ def data_table(csv_file):
     path = "csv/{0}.csv".format(csv_file)
     df = pd.read_csv(path, encoding = 'ISO-8859-1')
 
-    table = [
-        html.Div([
-            dash_table.DataTable(
+    table = dash_table.DataTable(
                 data=df.to_dict('records'),
                 columns=[{'id': c, 'name': c} for c in df.columns],
-                fixed_rows={'headers': True},
+                page_size=15,
+                fixed_rows={
+                    'headers': True},
+                style_table={
+                    'height': '100%',
+                    'overflowY': 'auto',
+                    'border-radius': '15px',
+                    'border': '4px solid #A9A9A9'
+                },
                 style_cell={
                     'height': 'auto',
                     'textAlign': 'left',
@@ -39,6 +45,5 @@ def data_table(csv_file):
                 sort_action="native",
                 sort_mode='multi',
             )
-        ])
-    ]
+
     return table

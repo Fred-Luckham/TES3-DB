@@ -16,8 +16,8 @@ app.layout = html.Div([
                 html.P(
                     "TES3 Game Data Database",
                     style = {
-                        'border-radius': '25px',
-                        'border': '2px solid #A9A9A9',
+                        'border-radius': '15px',
+                        'border': '4px solid #A9A9A9',
                         'font-family': 'monospace',
                         'text_align': 'center',
                         'padding': '10px'
