@@ -66,10 +66,6 @@ app.layout = html.Div([
                         'height': '75%',
                         'width': '100%'
                     }
-
-                ),
-                html.Div(
-                    id='selected-row-output'
             )
 ])
 
@@ -127,46 +123,8 @@ def update_ouput(value):
     elif value == '24':
         return data_table('Weapon')
     elif value == '25':
-        return cell_table
+        return cell_table('tes_csv')
 
-df_cells = pd.read_csv('/csv/tes_csv.csv', encoding = 'ISO-8859-1')
-cell_table = dash_table.DataTable(
-                id='table-content',
-                data=df_cells.to_dict('records'),
-                columns=[{'id': c, 'name': c} for c in df_cells.columns],
-                page_size=12,
-                fixed_rows={
-                    'headers': True},
-                style_table={
-                    'height': '100%',
-                    'overflowY': 'auto',
-                    'border-radius': '15px',
-                    'border': '4px solid #A9A9A9'
-                },
-                style_cell={
-                    'height': 'auto',
-                    'textAlign': 'left',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                    'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
-                    'whiteSpace': 'normal'
-                },
-                style_data_conditional=[
-                    {
-                        'if': {'row_index': 'odd'},
-                        'backgroundColor': 'rgb(248, 248, 248)'
-                    }
-                ],
-                style_header={
-                    'backgroundColor': 'rgb(230, 230, 230)',
-                    'fontWeight': 'bold'
-                },
-                filter_action="native",
-                sort_action="native",
-                sort_mode='multi',
-                row_selectable='single',
-                selected_rows=[],
-            )
 
 if __name__ == '__main__':
     app.run_server(debug=True)
