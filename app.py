@@ -123,8 +123,7 @@ def update_ouput(value):
     elif value == '24':
         return data_table('Weapon')
     elif value == '25':
-        return cell_table('tes_csv')
-
+        return data_table('tes_csv')
 
 if __name__ == '__main__':
     app.run_server(debug=True)
