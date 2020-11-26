@@ -129,7 +129,7 @@ def update_ouput(value):
     elif value == '25':
         return cell_table
 
-df_cells = pd.read_csv('/home/pi/Documents/Python/TESDB/csv/tes_csv.csv', encoding = 'ISO-8859-1')
+df_cells = pd.read_csv('/csv/tes_csv.csv', encoding = 'ISO-8859-1')
 cell_table = dash_table.DataTable(
                 id='table-content',
                 data=df_cells.to_dict('records'),
