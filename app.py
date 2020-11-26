@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import dash
+import dash_table
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
@@ -14,59 +15,67 @@ server = app.server
 
 app.layout = html.Div([
                 html.P(
-                    "TES3 Game Data Database",
+                    "TES3-DB - A database of assets from Morrowind (GOTY) and Tamriel Rebuilt / Project Tamriel",
                     style = {
                         'border-radius': '15px',
-                        'border': '4px solid #A9A9A9',
+                        'border': '5px solid #A9A9A9',
                         'font-family': 'monospace',
-                        'text_align': 'center',
+                        'text-align': 'center',
+                        'fontWeight': 'bold',
+                        'fontColor': '#5D6D7E',
+                        'font-size': '15px',
                         'padding': '10px'
                         }
-                    ),
-                    dcc.Dropdown(
-                                id='dropdown',
-                                options=[
-                                        {'label': 'Activator', 'value': '1'},
-                                        {'label': 'Alchemy', 'value': '2'},
-                                        {'label': 'Apparatus', 'value': '3'},
-                                        {'label': 'Armor', 'value': '4'},
-                                        {'label': 'Book', 'value': '5'},
-                                        {'label': 'Class', 'value': '6'},
-                                        {'label': 'Clothing', 'value': '7'},
-                                        {'label': 'Container', 'value': '8'},
-                                        {'label': 'Enchanting', 'value': '9'},
-                                        {'label': 'Ingredients', 'value': '10'},
-                                        {'label': 'Leveled Creatures', 'value': '11'},
-                                        {'label': 'Leveled Items', 'value': '12'},
-                                        {'label': 'Light', 'value': '13'},
-                                        {'label': 'Lockpick', 'value': '14'},
-                                        {'label': 'Misc', 'value': '15'},
-                                        {'label': 'NPC', 'value': '16'},
-                                        {'label': 'Probe', 'value': '17'},
-                                        {'label': 'Race', 'value': '18'},
-                                        {'label': 'Repair', 'value': '19'},
-                                        {'label': 'Sound Gen', 'value': '20'},
-                                        {'label': 'Sound', 'value': '21'},
-                                        {'label': 'Spell', 'value': '22'},
-                                        {'label': 'Static', 'value': '23'},
-                                        {'label': 'Weapon', 'value': '24'},
+                ),
+                dcc.Dropdown(
+                    id='dropdown',
+                    options=[
+                        {'label': 'Activator', 'value': '1'},
+                        {'label': 'Alchemy', 'value': '2'},
+                        {'label': 'Apparatus', 'value': '3'},
+                        {'label': 'Armor', 'value': '4'},
+                        {'label': 'Book', 'value': '5'},
+                        {'label': 'Class', 'value': '6'},
+                        {'label': 'Clothing', 'value': '7'},
+                        {'label': 'Container', 'value': '8'},
+                        {'label': 'Enchanting', 'value': '9'},
+                        {'label': 'Ingredients', 'value': '10'},
+                        {'label': 'Leveled Creatures', 'value': '11'},
+                        {'label': 'Leveled Items', 'value': '12'},
+                        {'label': 'Light', 'value': '13'},
+                        {'label': 'Lockpick', 'value': '14'},
+                        {'label': 'Misc', 'value': '15'},
+                        {'label': 'NPC', 'value': '16'},
+                        {'label': 'Probe', 'value': '17'},
+                        {'label': 'Race', 'value': '18'},
+                        {'label': 'Repair', 'value': '19'},
+                        {'label': 'Sound Gen', 'value': '20'},
+                        {'label': 'Sound', 'value': '21'},
+                        {'label': 'Spell', 'value': '22'},
+                        {'label': 'Static', 'value': '23'},
+                        {'label': 'Weapon', 'value': '24'},
+                        {'label': 'Cells', 'value': '25'}],
+                    style={
+                        'font-family': 'monospace',
+                    },
+                    searchable=False
+                ),
+                html.Div(
+                    id='dropdown-output',
+                    style={
+                        'height': '75%',
+                        'width': '100%'
+                    }
 
-                                        ],
-                                style={
-                                    'font-family': 'monospace',
-                                },
-                                searchable=False),
-                    html.Div(
-                        id='dropdown-content',
-                        style={
-                            'height': '100%',
-                            'width': '100%'
-                        }
-                        )
+                ),
+                html.Div(
+                    id='selected-row-output'
+            )
 ])
 
+
 @app.callback(
-    Output('dropdown-content', 'children'),
+    Output('dropdown-output', 'children'),
     [Input('dropdown', 'value')])
 def update_ouput(value):
     if value == '1':
@@ -117,6 +126,47 @@ def update_ouput(value):
         return data_table('Static')
     elif value == '24':
         return data_table('Weapon')
+    elif value == '25':
+        return cell_table
+
+df_cells = pd.read_csv('/home/pi/Documents/Python/TESDB/csv/tes_csv.csv', encoding = 'ISO-8859-1')
+cell_table = dash_table.DataTable(
+                id='table-content',
+                data=df_cells.to_dict('records'),
+                columns=[{'id': c, 'name': c} for c in df_cells.columns],
+                page_size=12,
+                fixed_rows={
+                    'headers': True},
+                style_table={
+                    'height': '100%',
+                    'overflowY': 'auto',
+                    'border-radius': '15px',
+                    'border': '4px solid #A9A9A9'
+                },
+                style_cell={
+                    'height': 'auto',
+                    'textAlign': 'left',
+                    'overflow': 'hidden',
+                    'textOverflow': 'ellipsis',
+                    'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
+                    'whiteSpace': 'normal'
+                },
+                style_data_conditional=[
+                    {
+                        'if': {'row_index': 'odd'},
+                        'backgroundColor': 'rgb(248, 248, 248)'
+                    }
+                ],
+                style_header={
+                    'backgroundColor': 'rgb(230, 230, 230)',
+                    'fontWeight': 'bold'
+                },
+                filter_action="native",
+                sort_action="native",
+                sort_mode='multi',
+                row_selectable='single',
+                selected_rows=[],
+            )
 
 if __name__ == '__main__':
     app.run_server(debug=True)
